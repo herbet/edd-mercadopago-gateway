@@ -1,0 +1,251 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EDD MercadoPago Gateway\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-01 19:22-0300\n"
+"PO-Revision-Date: 2012-05-01 19:22-0300\n"
+"Last-Translator: Matt Varone <plugins@mattvarone.com>\n"
+"Language-Team: Matt Varone <contact@mattvarone.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: Argentina\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: edd-mercadopago-gateway.php:142
+msgid "get it here"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:143
+msgid "IPN settings"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:158
+msgid "MercadoPago Argentina Settings"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:159
+msgid "Configure your MercadoPago Argentina Settings"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:164
+#: edd-mercadopago-gateway.php:237
+msgid "IMPORTANT"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:165
+msgid "MercadoPago Argentina only supports payments in US Dollars ($) and Argentian Pesos ($). This Gateway does not support the test mode account, all payments will be processed live."
+msgstr ""
+
+#: edd-mercadopago-gateway.php:170
+#: edd-mercadopago-gateway.php:243
+msgid "IPN"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:171
+#, php-format
+msgid "Set your MercadoPago Argentina %s to notify this URL: %s"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:176
+#: edd-mercadopago-gateway.php:249
+msgid "Client ID"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:177
+#, php-format
+msgid "Enter your MercadoPago Argentina client ID ( %s )"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:183
+#: edd-mercadopago-gateway.php:256
+msgid "Client Secret Key"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:184
+#, php-format
+msgid "Enter your MercadoPago Argentina client secret key ( %s )"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:190
+#: edd-mercadopago-gateway.php:263
+msgid "Excluded Payment Methods"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:191
+#: edd-mercadopago-gateway.php:264
+msgid "Select the Payment methods to exclude"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:194
+#: edd-mercadopago-gateway.php:267
+msgid "Visa"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:195
+#: edd-mercadopago-gateway.php:268
+msgid "American Express"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:196
+#: edd-mercadopago-gateway.php:269
+msgid "Mastercard"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:197
+msgid "Tarjeta Shopping"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:198
+msgid "Argencard"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:199
+msgid "Naranja"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:200
+msgid "Cabal"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:201
+msgid "Banelco"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:202
+msgid "Provincia Pagos"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:203
+msgid "Pago F&aacute;cil"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:204
+msgid "Rapipago"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:205
+msgid "RedLink"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:210
+#: edd-mercadopago-gateway.php:281
+msgid "Excluded Payment Types"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:211
+#: edd-mercadopago-gateway.php:282
+msgid "Select the Payment types to exclude"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:214
+#: edd-mercadopago-gateway.php:285
+msgid "Credit Card"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:215
+#: edd-mercadopago-gateway.php:286
+msgid "Ticket"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:216
+#: edd-mercadopago-gateway.php:287
+msgid "ATM"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:221
+#: edd-mercadopago-gateway.php:292
+msgid "Installments"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:222
+#: edd-mercadopago-gateway.php:293
+msgid "The maximum amount of installments to accept ( 1 to 24 )"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:231
+msgid "MercadoPago Brazil Settings"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:232
+msgid "Configure your MercadoPago Brazil Settings"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:238
+msgid "MercadoPago Brazil only supports payments in Brazilian Real ($). This Gateway does not support the test mode account, all payments will be processed live."
+msgstr ""
+
+#: edd-mercadopago-gateway.php:244
+#, php-format
+msgid "Set your MercadoPago Brazil %s to notify this URL: %s"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:250
+#, php-format
+msgid "Enter your MercadoPago Brazil client ID ( %s )"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:257
+#, php-format
+msgid "Enter your MercadoPago Brazil client secret key ( %s )"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:270
+msgid "Aura"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:271
+msgid "Diners"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:272
+msgid "Hipercard"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:273
+msgid "Elo"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:274
+msgid "Boleto"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:275
+msgid "Banco do Brasil"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:276
+msgid "Bradesco"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:315
+msgid "Argentian Pesos (&#36;)"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:522
+msgid "Thanks for completing the checkout. <strong>Your Payment is in pending mode</strong>. Please complete the process with MercadoPago to access your purchased files."
+msgstr ""
+
+#: edd-mercadopago-gateway.php:581
+#: edd-mercadopago-gateway.php:759
+#, php-format
+msgid "MercadoPago %s Auth Service Error"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:619
+#, php-format
+msgid "MercadoPago %s IPN Error"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:651
+msgid "Please enter your MercadoPago Client ID and Secret Key in settings"
+msgstr ""
+
+#: edd-mercadopago-gateway.php:790
+#, php-format
+msgid "MercadoPago %s Checkout Error"
+msgstr ""
+
