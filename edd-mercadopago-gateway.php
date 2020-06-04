@@ -36,7 +36,8 @@ if ( ! class_exists( 'EDD_MercadoPago_Gateway' ) )
         * @since    1.0
         */
 
-        private $listener_uri = 'https://api.mercadolibre.com/collections/notifications/';
+        private $payments_uri       = 'https://api.mercadopago.com/v1/payments/';
+        private $merchant_order_uri = 'https://api.mercadopago.com/merchant_orders/';
 
 
         /**
@@ -561,6 +562,10 @@ if ( ! class_exists( 'EDD_MercadoPago_Gateway' ) )
             if ( ! isset( $_REQUEST['id'] ) || trim( $_REQUEST['id'] ) == "" )
             return;
 
+            // check for topic
+            if ( ! isset( $_REQUEST['topic'] ) || trim( $_REQUEST['topic'] ) == "" )
+            return;            
+
             // get credentials
             $credentials = $this->get_credentials( $country );
 
@@ -590,32 +595,79 @@ if ( ! class_exists( 'EDD_MercadoPago_Gateway' ) )
             // try to verify the notification
             try {
 
-                // verify this notification
-                $api_response = wp_remote_get( add_query_arg( 'access_token', $accessData->getAccessToken() , $this->listener_uri . $_REQUEST['id'] ) );
+                if ( $_REQUEST['topic'] == 'payment' ) {
+                    // verify this notification
+                    $api_response = wp_remote_get( add_query_arg( 'access_token', $accessData->getAccessToken() , $this->payments_uri . $_REQUEST['id'] ) );
 
-                // get json body
-                $json = wp_remote_retrieve_body( $api_response );
+                    // get json body
+                    $json = wp_remote_retrieve_body( $api_response );
 
-                // verify there is a response
-                if ( empty( $json ) ) {
-                    return;
+                    // verify there is a response
+                    if ( empty( $json ) ) {
+                        return;
+                    }
+
+                    // decode json
+                    $json = json_decode( $json ); 
+                    
+                    // verify this notification
+                    $merchant_api_response = wp_remote_get( add_query_arg( 'access_token', $accessData->getAccessToken() , $this->merchant_order_uri . $json->order->id ) );
+
+                    // get json body
+                    $json_merchant = wp_remote_retrieve_body( $merchant_api_response );
+
+                    // verify there is a response
+                    if ( empty( $json_merchant ) ) {
+                        return;
+                    }
+
+                    // decode json
+                    $json_merchant = json_decode( $json_merchant );
+
+                } else if ($_REQUEST['topic'] == 'merchant_order') {
+                    // verify this notification
+                    $merchant_api_response = wp_remote_get( add_query_arg( 'access_token', $accessData->getAccessToken() , $this->merchant_order_uri . $_REQUEST['id'] ) );
+
+                    // get json body
+                    $json_merchant = wp_remote_retrieve_body( $merchant_api_response );
+
+                    // verify there is a response
+                    if ( empty( $json_merchant ) ) {
+                        return;
+                    }
+
+                    // decode json
+                    $json_merchant = json_decode( $json_merchant );                                        
                 }
 
-                // decode json
-                $json = json_decode( $json );
-
+                // get last payment
+                $lastPayment = end($json_merchant->payments);
+                
                 // check status
-                if ( ! isset( $json->collection->status ) || $json->collection->status != 'approved'  ) {
+                if ( ! isset( $lastPayment->status )  ) {
                     throw new exception( $json->message );
                 }
 
                 // check payment internal id
-                if ( ! isset( $json->collection->external_reference ) ) {
+                if ( ! isset( $json_merchant->external_reference ) ) {
                     throw new exception( var_export($json, true) );
                 }
 
-                // update succesful payment
-                edd_update_payment_status( $json->collection->external_reference, 'publish' );
+                // MercadoPago Status => EDD Status
+                $payment_status = [
+                    'approved'      => 'publish',       // The payment has been approved and accredited
+                    'in_process'    => 'processing',    // Payment is being reviewed
+                    'authorized'    => 'processing',    // The payment has been authorized but not captured yet
+                    'in_mediation'  => 'processing',    // Users have initiated a dispute
+                    'refunded'      => 'refunded',      // Payment was refunded to the user
+                    'rejected'      => 'abandoned',     // Payment was rejected. The user may retry payment.
+                    'pending'       => 'pending',       // The user has not yet completed the payment process
+                    'cancelled'     => 'revoked',       // Payment was cancelled by one of the parties or because time for payment has expired
+                    'charged_back'  => 'failed'         // Was made a chargeback in the buyer’s credit card
+                ];
+
+                // update payment status
+                edd_update_payment_status( $json_merchant->external_reference, $payment_status[$lastPayment->status] );
 
                 // return status 200 OK
                 die(1);
